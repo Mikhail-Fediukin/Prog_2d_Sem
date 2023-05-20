@@ -13,7 +13,7 @@ class NaiveBayesClassifier:
         self.counters = defaultdict(lambda: defaultdict(int))
         self.class_counter = defaultdict(int)
         self.words_count = 0
-      
+
     def fit(self, X, y):
         for x_, y_ in zip(X, y):
             self.class_counter[y_] += 1
@@ -21,13 +21,13 @@ class NaiveBayesClassifier:
                 self.counters[y_][word] += 1
                 self.set_of_words.add(word)
                 self.words_count += 1
-              
+
     def predict(self, X):
         predicted = []
         for string in X:
             predicted.append(self.predict_class(string))
         return predicted
- 
+
     def predict_class(self, string):
         class_highest_prob = None
         count_of_elements = sum(self.class_counter.values())
