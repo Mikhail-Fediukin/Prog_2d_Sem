@@ -1,7 +1,29 @@
-from sqlalchemy import Column, String, Integer
+from scraputils import get_news
+from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
+
+def create_db(lst):
+    s = session()
+    inf_needed = {
+        "title": "None",
+        "url": "None",
+        "author": "None",
+        "points": 0,
+        "comments": 0,
+    }
+    for dictionary in lst:
+        if dictionary != inf_needed:
+            news_ = News(
+                title=dictionary["title"],
+                author=dictionary["author"],
+                url=dictionary["url"],
+                comments=dictionary["comments"],
+                points=dictionary["points"],
+            )
+            s.add(news_)
+            s.commit()
 
 
 Base = declarative_base()
@@ -19,4 +41,9 @@ class News(Base):
     points = Column(Integer)
     label = Column(String)
 
-Base.metadata.create_all(bind=engine)
+
+if __name__ == "__main__":
+    Base.metadata.create_all(bind=engine)
+    url = "https://news.ycombinator.com/"
+    news_list = get_news(url, number_of_pages=1)
+    create_db(news_list)
