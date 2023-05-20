@@ -27,13 +27,9 @@ def extract_news(parser):
                     inf_needed["url"] = "https://news.ycombinator.com/" + link
         else:
             if news_.find("span", class_="subline"):
-                inf_needed["points"] = int(
-                    news_.find("span", class_="subline").find("span", class_="score").string.split()[0]
-                )
+                inf_needed["points"] = int(news_.find("span", class_="subline").find("span", class_="score").string.split()[0])
                 inf_needed["author"] = news_.find("span", class_="subline").find("a", class_="hnuser").string
-                number_of_comments = str(
-                    news_.find("span", class_="subline").findAll("a")[-1].string.split()[0]
-                )
+                number_of_comments = str(news_.find("span", class_="subline").findAll("a")[-1].string.split()[0])
                 if number_of_comments.isdigit():
                     inf_needed["comments"] = int(number_of_comments)
                 else:
