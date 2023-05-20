@@ -11,6 +11,7 @@ def all_news():
     rows = s.query(News).all()
     return template("news_template_2", rows=s.query(News).order_by(News.label).all())
 
+
 @route("/news")
 def news_list():
     s = session()
