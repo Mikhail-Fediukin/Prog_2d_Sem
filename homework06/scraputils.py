@@ -43,6 +43,7 @@ def extract_news(parser):
 def extract_next_page(parser):
     return parser.table.findAll("table")[1].findAll("tr")[-1].contents[2].find("a").get("href")
 
+
 def get_news(url, number_of_pages=1):
     news = []
     while number_of_pages:
