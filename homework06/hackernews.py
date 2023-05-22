@@ -1,6 +1,6 @@
-import sqlalchemy
+import sqlalchemy  # type: ignore
 from bayes import NaiveBayesClassifier, label_news
-from bottle import redirect, request, route, run, template
+from bottle import redirect, request, route, run, template  # type: ignore
 from db import News, session
 from scraputils import get_news
 
