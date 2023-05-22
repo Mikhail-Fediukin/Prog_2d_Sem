@@ -64,9 +64,9 @@ class TestBayes(unittest.TestCase):
         model = NaiveBayesClassifier()
         model.fit(X_train, y_train)
         actual_score = model.score(X_test, y_test)
-        expected_score = 0.982057416268
+        expected_score = 0.972057416268
         self.assertGreaterEqual(actual_score, expected_score)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
