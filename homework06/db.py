@@ -15,6 +15,7 @@ def create_db(lst):
     }
     for dictionary in lst:
         if dictionary != inf_needed:
+            # inf_needed
             news_ = News(
                 title=dictionary["title"],
                 author=dictionary["author"],
@@ -31,7 +32,7 @@ engine = create_engine("sqlite:///news.db")
 session = sessionmaker(bind=engine)
 
 
-class News(Base):
+class News(Base):  # type: ignore
     __tablename__ = "news"
     id = Column(Integer, primary_key=True)
     title = Column(String)
